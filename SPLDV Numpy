@@ -1,0 +1,27 @@
+import numpy as np
+import matplotlib.pyplot as plt
+
+Matriks_A = np.array([[2,3], 
+                     [1,-1]])
+
+Matriks_B = np.array([7,1])
+
+hasil=np.linalg.solve(Matriks_A, Matriks_B)
+
+print("Hasil SPLDV adalah")
+print("x=",hasil[0],"y=",hasil[1])
+
+x = np.linspace(0, 5, 100)
+y1 = (7 - 2 * x) / 3
+y2 = x - 1
+
+plt.plot(x, y1, label='2x + 3y = 7')
+plt.plot(x, y2, label='x - y = 1')
+plt.plot(hasil[0], hasil[1], 'ro', label='Solusi') # Titik solusi
+
+plt.xlabel('x')
+plt.ylabel('y')
+plt.title('Visualisasi SPLDV')
+plt.legend()
+plt.grid(True)
+plt.show()
