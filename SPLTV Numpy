@@ -1,0 +1,34 @@
+import numpy as np
+import matplotlib.pyplot as plt
+from mpl_toolkits.mplot3d import Axes3D
+
+a = np.array([[1, 2, 1],
+              [3, -1, 2],
+              [-2, 3, -1]])
+b = np.array([10, 5, -9])
+
+hasil = np.linalg.solve(a, b)
+print("\nSoal 1\nx + 2y + z = 10\n3x - y + 2z = 5\n-2x + 3y - z = -9\n")
+print("Solusi Numpy: ""x {=", hasil[0], "} y ={", hasil[1], "}, z ={", hasil[2])
+
+fig = plt.figure()
+ax = fig.add_subplot(111, projection='3d')
+
+x = np.linspace(-10, 10, 100)
+y = np.linspace(-10, 10, 100)
+X, Y = np.meshgrid(x, y)
+
+Z1 = 10 - X - 2 * Y
+ax.plot_surface(X, Y, Z1, alpha=0.5, color='yellow')
+
+Z2 = (5 - 3 * X + Y) / 2
+ax.plot_surface(X, Y, Z2, alpha=0.5, color='red')
+
+Z3 = (-9 + 2 * X - 3 * Y)
+ax.plot_surface(X, Y, Z3, alpha=0.5, color='green')
+
+ax.set_xlabel('X')
+ax.set_ylabel('Y')
+ax.set_zlabel('Z')
+plt.title("Visualisasi SPL")
+plt.show()
