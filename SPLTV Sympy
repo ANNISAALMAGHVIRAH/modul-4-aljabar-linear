@@ -1,0 +1,33 @@
+import numpy as np
+import sympy as sp
+import matplotlib.pyplot as plt
+from mpl_toolkits.mplot3d import Axes3D
+
+x, y, z = sp.symbols('x y z')
+solusi2 = sp.solve([x + 2*y + z - 10,3*x - y + 2*z - 5,-2*x + 3*y - z + 9], (x, y, z))
+
+print("\nsoal 2.\nx + 2y + z = 10\n3x - y + 2z = 5\n-2x + 3y - z = -9\njawaban")
+print(solusi2)
+x = np.linspace(-10, 10, 100)
+y = np.linspace(-10, 10, 100)
+
+X, Y = np.meshgrid(x, y)
+
+Z1 = 10 - X - 2 * Y
+Z2 = (5 - 3 * X + Y) / 2
+Z3 = -9 + 2 * X - 3 * Y
+
+fig = plt.figure()
+ax = fig.add_subplot(111, projection='3d')
+
+ax.plot_surface(X, Y, Z1, alpha=0.5, color='yellow', label='x + 2y + z = 10')
+ax.plot_surface(X, Y, Z2, alpha=0.5, color='red', label='3x - y + 2z = 5')
+ax.plot_surface(X, Y, Z3, alpha=0.5, color='green', label='-2x + 3y - z = -9')
+
+ax.set_xlabel('X')
+ax.set_ylabel('Y')
+ax.set_zlabel('Z')
+plt.title("Visualisasi Sistem Persamaan Linear 3 Variabel")
+ax.legend()
+
+plt.show()
